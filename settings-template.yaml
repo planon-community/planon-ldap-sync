@@ -1,0 +1,8 @@
+groups:
+  - source: CN=Planon Administrators,DC=example,DC=edu
+    destination: ApplicationManager
+  - source: CN=Planon Users,DC=example,DC=edu
+    destination: ApplicationUsers
+instance: example-dev
+ldap: ldaps://example.edu:636
+ldapBaseDN: DC=example,DC=edu

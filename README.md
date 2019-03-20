@@ -11,24 +11,38 @@
 
 ## SOAP API Setup
 
-![Web Services](./images/example-web-services.png)
+1. Login to Planon, click **Tools** --> **Web services**
+    1. Click **Add** and fill in the required information
 
-![Web Services](./images/example-web-services-bos.png)
+    ![Web Services](./images/example-web-services.png)
 
-![Web Services](./images/example-web-services-bos-fields.png)
+2. Search for and add the **Account** and **AccountGroup** business objects
 
-![Web Services](./images/example-web-services-compile.png)
+    ![Web Services](./images/example-web-services-bos.png)
 
-Login to the Axis2 administration console ```https:/<instance name>.planoncloud.com/nyx/axis2-admin/welcome```
+3. Click **Link field definitions** and add any required definitions, for this example we've added all fields
 
-![Apache Axis2](./images/example-axis2.png)
+    ![Web Services](./images/example-web-services-bos-fields.png)
 
-Clear out webservices being replaced
+4. Click **Compile web service**, download the generated .jar file
 
-```bash
-curl --user $PLANONWEBDAVUSER:$PLANONWEBDAVPWD https://<instance name>.planoncloud.com/webservices/
-```
+    ![Web Services](./images/example-web-services-compile.png)
 
-![Apache Axis2 Upload](./images/example-axis2-upload.png)
+5. Login to the Axis2 administration console ```https:/<instance name>.planoncloud.com/nyx/```
 
-![Apache Axis2 Services](./images/example-axis2-services.png)
+    ![Apache Axis2](./images/example-axis2.png)
+
+6. **Browse** to the .jar file and select it, click **Upload**
+
+    >NOTE: If you have an existing web service you may need to delete it, otherwise duplicate methods will be created and errors will be thrown
+
+    ```bash
+    # Simple curl example to delete WebDAV files
+    curl --user $PLANONWEBDAVUSER:$PLANONWEBDAVPWD https://<instance name>.planoncloud.com/webservices/
+    ```
+
+    ![Apache Axis2 Upload](./images/example-axis2-upload.png)
+
+7. Verify the SOAP API methods are shown under **Services**
+
+    ![Apache Axis2 Services](./images/example-axis2-services.png)

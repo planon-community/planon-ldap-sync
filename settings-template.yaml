@@ -6,3 +6,4 @@ groups:
 instance: example-dev
 ldap: ldaps://example.edu:636
 ldapBaseDN: DC=example,DC=edu
+webservice: example

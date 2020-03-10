@@ -33,7 +33,7 @@ for group in settings['groups']:
     accountgroupClient = zeep.Client(baseURL + 'AccountGroup?wsdl')
 
     # Determine the namespace for accountGroups
-    group_namespace = list(accountgroupClient.namespaces.keys())[list(accountgroupClient.namespaces.values()).index('http://accountgroup.example.ws/xsd')]
+    group_namespace = list(accountgroupClient.namespaces.keys())[list(accountgroupClient.namespaces.values()).index(f"http://accountgroup.{settings['webservice']}.ws/xsd")]
     groupFilter = accountgroupClient.get_type(f"{group_namespace}:AccountGroupFilter")(accountgroupClient.get_type('ns0:FieldFilter')('PnName', group['destination'], 'equals'))
     accountGroupId = accountgroupClient.service.find(token, groupFilter)[0]
 
@@ -46,7 +46,7 @@ for group in settings['groups']:
             accountClient = zeep.Client(baseURL + 'Account?wsdl')
 
             # Determine namespace for accounts
-            account_namespace = list(accountClient.namespaces.keys())[list(accountClient.namespaces.values()).index('http://account.example.ws/xsd')]
+            account_namespace = list(accountClient.namespaces.keys())[list(accountClient.namespaces.values()).index(f"http://account.{settings['webservice']}.ws/xsd")]
             accountFilter = accountClient.get_type(f"{account_namespace}:AccountFilter")(accountClient.get_type('ns1:FieldFilter')('Accountname', user_result[0][1]['sAMAccountName'][0].decode('utf-8'), 'equals'))
             accountId = accountClient.service.find(token, accountFilter)[0]
 
